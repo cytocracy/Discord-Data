@@ -8,7 +8,7 @@ import datetime
 import time
 from dateutil import parser
 
-with open('data.json', encoding='utf8') as f:
+with open('data2.json', encoding='utf8') as f:
     data = json.load(f)
 
 def get_words():
@@ -18,6 +18,8 @@ def get_words():
         text = message.get('content').lower()
         if len(text) > 0:
             words = text.split()
+            #strip punctuation
+            words = [word.strip('.,!?/-') for word in words]
             for word in words:
                 if word in content:
                     content[word] += 1
